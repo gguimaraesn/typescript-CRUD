@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../utils/createClient';
 import UserForm from '../components/UserForm';
 import UserTable from '../components/UserTable';
@@ -17,9 +17,19 @@ const Form: React.FC = () => {
   const [user2, setUser2] = useState<{ id: number, name: string, age: string }>({ id: 0, name: '', age: '' });
   const [isLoading, setIsLoading] = useState(false);
 
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  useEffect(() => {
+    if (nameInputRef.current) {
+      setTimeout(() => {
+        nameInputRef.current!.focus();
+      }, 100);
+    }
+  }, [user2]);
 
   async function fetchUsers() {
     const { data } = await supabase.from('users').select('*');
@@ -76,9 +86,10 @@ const Form: React.FC = () => {
                 type="text"
                 id="name"
                 name="name"
+                ref={nameInputRef}
                 value={user2.name}
                 onChange={handleChange2}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-0 focus:ring-2 focus:ring-offset-2 transition duration-300 ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 placeholder="name"
               />
             </div>
@@ -90,7 +101,7 @@ const Form: React.FC = () => {
                 name="age"
                 value={user2.age}
                 onChange={handleChange2}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-0 focus:ring-2 focus:ring-offset-2 transition duration-300 ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 placeholder="age"
               />
             </div>

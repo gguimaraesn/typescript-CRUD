@@ -7,7 +7,7 @@ interface UserFormProps {
   fetchUsers: () => void;
 }
 
-const UserForm: React.FC<UserFormProps> = ({ fetchUsers }) => {
+  const UserForm: React.FC<UserFormProps> = ({ fetchUsers }) => {
   const [user, setUser] = useState<{ name: string; age: number | '' }>({ name: '', age: '' });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +38,7 @@ const UserForm: React.FC<UserFormProps> = ({ fetchUsers }) => {
           name="name"
           value={user.name}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-0 focus:ring-2 focus:ring-offset-2 transition duration-300 ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
         />
       </div>
       <div className="mb-6">
@@ -49,7 +49,7 @@ const UserForm: React.FC<UserFormProps> = ({ fetchUsers }) => {
           name="age"
           value={user.age}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-0 focus:ring-2 focus:ring-offset-2 transition duration-300 ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
         />
       </div>
       <div className="flex items-center justify-between">
